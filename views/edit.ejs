@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <h1>Metal Edit page</h1>
+        
+			<form action ="/metals/<%=metal.id%>?_method=PUT" method="POST">
+				
+					<label for="name">Metal</label>
+					<input type="text" name="name"  value="<%=metal.name%>"/><br>
+				<label for="form">Form</label>
+					<input type="text" name="form"  value="<%=metal.form%>" /><br>
+
+					<label for="weight">Ounces</label>
+					<input type="number" name="weight"  value="<%=metal.weight%>" /><br>
+
+					<label for="description">Description</label>
+					<input type="text" name="description" id="description" value="<%=metal.description%>"/><br>
+					
+				
+	
+					<input type="submit" id ="add" value="Edit Inventory">
+				</div>
+			</form>
+		</div>
+	
+		<nav>
+            <a href="/metals">Back to Index</a>
+        </nav>
+    </body>
+</html>

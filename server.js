@@ -1,7 +1,8 @@
 const express = require('express');
 const app = express();
 const PORT = 3030
-const Metal = require('./models/metals')
+const metalsControllers = require('./controllers/metals.js')
+
 
 // Set up Database
 const mongoose = require('mongoose');
@@ -43,58 +44,13 @@ app.use(express.urlencoded({extended:true}));
 
 // CONTROLLERS
 
-// Index Route
-app.get('/metals', (req, res)=>{
-	Metal.find({}, (err, allMetals) =>{
-		res.render('index.ejs', {
-			metals: allMetals
-		})
-	})
-});
-
-// NEW Route
-app.get('/metals/new', (req, res)=>{
-    res.render('new.ejs');
-});
-
-// SHOW Route
-app.get('/metals/:id', (req, res)=>{
-    Metal.findById(req.params.id, (err, foundMetal)=>{
-        res.render('show.ejs', {
-			metal: foundMetal
-		});
-		
-    });
-});
-
-// POST Route - "Create"
-app.post('/metals', (req, res)=>{
-	Metal.create(req.body, (err, createdMetal) =>{
-		if(err){
-			console.log(err);
-			res.send(err)
-
-		} else {
-			//res.send(createdMetal);
-			console.log(createdMetal)
-			res.redirect('/metals')
-		}
-	})
-    
-});
-
-app.delete('/metals/:id', (req, res)=>{
-	Metal.findByIdAndRemove(req.params.id, (err, data)=>{
-        res.redirect('/metals') 
-    })
-})
-
-
 
 
 app.listen(PORT, ()=>{
     console.log('Server listening');
 });
 
+
+app.use('/metals', metalsControllers);
 
 //localhost:3030/metals/new

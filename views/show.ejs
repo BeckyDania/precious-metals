@@ -11,7 +11,7 @@
         Price: $<%=metal.price %> <br>
 		Description: <%=metal.description %> <br>
 
-		
+		<a href="/metals/<%=metal.id; %>/edit">Edit</a>
 
 		<form action="/metals/<%= metal.id %>?_method=DELETE" method="POST">
 			<button>Delete</button>
