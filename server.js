@@ -6,6 +6,11 @@ const Metal = require('./models/metals')
 // Set up Database
 const mongoose = require('mongoose');
 
+// include the method-override package
+const methodOverride = require('method-override')
+
+app.use(methodOverride('_method'))
+
 //preciousMetals - name of the database
 const mongoURI = "mongodb://127.0.0.1:27017/preciousMetals"
 
@@ -24,9 +29,19 @@ db.on('connected', ()=> { console.log("mongo connected")})
 db.on('disconnected', ()=> { console.log("mongo disconnected")})
 
 //MIDDLEWARES
+
+app.use((req, res, next) => {
+	console.log('HELLO, I am custom middleware, every request passes through me')
+	console.log("Think: like a bouncer at a club")
+	console.log("Here is req", req.body)
+	next() // this sends the request on to the next step in the process
+  })
+
 // this will parse the data and create the "req.body" object
 //AKA Body Parser
 app.use(express.urlencoded({extended:true}));
+
+// CONTROLLERS
 
 // Index Route
 app.get('/metals', (req, res)=>{
@@ -67,6 +82,14 @@ app.post('/metals', (req, res)=>{
 	})
     
 });
+
+app.delete('/metals/:id', (req, res)=>{
+	Metal.findByIdAndRemove(req.params.id, (err, data)=>{
+        res.redirect('/metals') 
+    })
+})
+
+
 
 
 app.listen(PORT, ()=>{
