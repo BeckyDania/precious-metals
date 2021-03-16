@@ -2,7 +2,7 @@
 <html>
     <head>
         
-        <%- include ('/partials/head.ejs') %>
+        <%- include ('./partials/head.ejs') %>
 
     </head>
     <body>
@@ -10,8 +10,10 @@
         <form action="/metals" method="POST">
 			Metal: <input type="text" name="name" /> <br/>
 			Form: <input type="text" name="form" /> <br />
-			Ounces: <input type="number" name="weight" /> <br />
+			Weight: <input type="number" name="weight" /> <br />
 			Description: <input type="text" name="description" /> <br />
+            Image: <input type="text" name="image" /><br>
+            Quantity: <input type="number" name
 			<input type="submit" value="Create Inventory" />
 		</form>
 	

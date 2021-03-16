@@ -2,7 +2,7 @@
 <html>
     <head>
         
-		<%- include ('/partials/head.ejs') %>
+		<%- include ('./partials/head.ejs') %>
 
     </head>
     <body>
@@ -20,7 +20,12 @@
 
 					<label for="description">Description</label>
 					<input type="text" name="description" id="description" value="<%=metal.description%>"/><br>
-					
+
+					<label for="image">Image</label>
+					<input type="text" name="image" value="<%=metal.image%>" /><br>
+
+					<label for="quantity">Quantity</label>
+					<input type="number" name="quantity" value="<%=metal.quantity%>" /> <br>
 				
 	
 					<input type="submit" id ="add" value="Edit Inventory">

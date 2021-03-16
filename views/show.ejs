@@ -2,15 +2,20 @@
 <html>
     <head>
       
-        <%- include ('/partials/head.ejs') %>
+        <%- include ('./partials/head.ejs') %>
 
     </head>
     <body>
         <h1>Metal show page</h1>
-        Metal: <%=metal.name %> <br>
-		Ounces: <%=metal.weight %> <br>
-        Price: $<%=metal.price %> <br>
-		Description: <%=metal.description %> <br>
+
+        <p><%= metal.image %></p>
+		<p><%= metal.name %></p>
+		<p><%= metal.form %></p>
+		<p>Quantity: <%= metal.quantity %></p>
+        <p>Weight: <%= metal.weight %></p>
+        <p>Price: $<%=metal.price %> </p>
+		<p><%=metal.description %></p>
+
 
 		<a href="/metals/<%=metal.id; %>/edit">Edit</a>
 

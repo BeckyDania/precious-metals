@@ -16,7 +16,11 @@
 			<% for(let i = 0; i < metals.length; i++){ %>
 				<li>
 				<a href="/metals/<%=metals[i].id; %>">
-					<%=metals[i].name %>	
+					<p><%= metals[i].image %></p>
+					<p><%= metals[i].name %></p>
+					<p><%= metals[i].form %></p>
+					<p><%= metals[i].weight %></p>
+					
 				</a>				
 				</li>
 			<% } %>

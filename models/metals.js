@@ -6,8 +6,9 @@ const metalSchema = new Schema({
     form:  { type: String, required: true },
     weight:  { type: Number, required: true },
     price:  { type: Number },
+    quantity: { type: Number, required: true},
 	description:{ type: String, required: true },
-    img: {type: String }
+    image: {type: String }
 });
 
 const Metal = model('Metal', metalSchema);
