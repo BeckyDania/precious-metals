@@ -10,7 +10,7 @@ This is an Online Bullion Store where users will be able to ultimately purchase 
 HTML, JS, CSS, Express.js, Node.js, MondoDb/ Mongoose, Skeleton, external API,
 Trello Baord: https://trello.com/b/4139d6mP
 
-# MVC User Story - Backend Inventory Manager
+# MVP User Story - Backend Inventory Manager
 - User can review bullion inventory 
 - User can create new inventory
 - User can edit the inventory
