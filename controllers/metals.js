@@ -17,6 +17,7 @@ router.get('/', (req, res)=>{
 	})
 });
 
+
 // NEW Route
 router.get('/new', (req, res)=>{
     res.render('new.ejs');
@@ -31,6 +32,13 @@ router.get('/:id', (req, res)=>{
 		
     });
 });
+
+// POST Route for API
+router.post('/', (req, res) => {
+	const gold = req.body.gold
+	const url_api = `https://metals-api.com/api/latest?access_key=${API_KEY}&base=XAU&symbols=USD`
+})
+
 
 // POST Route - "Create"
 router.post('/', (req, res)=>{

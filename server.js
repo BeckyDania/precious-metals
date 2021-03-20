@@ -1,7 +1,12 @@
+require('dotenv').config();
+
 const express = require('express');
 const app = express();
-const PORT = 3030
+const PORT = process.env.PORT
+
 const metalsControllers = require('./controllers/metals.js')
+
+
 
 
 // Set up Database
@@ -13,7 +18,7 @@ const methodOverride = require('method-override')
 app.use(methodOverride('_method'))
 
 //preciousMetals - name of the database
-const mongoURI = "mongodb://127.0.0.1:27017/preciousMetals"
+const mongoURI = process.env.MONGODBURI
 
 const db = mongoose.connection;
 
