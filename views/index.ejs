@@ -6,6 +6,10 @@
     
 	</head>
     <body>
+
+		<%- include ('./partials/header.ejs') %>
+
+
         <h1>Gold Inventory Index Page</h1>
 <nav>
 		<a href="/metals/new">Create New Inventory</a>
@@ -15,13 +19,14 @@
 		<ul>
 			<% for(let i = 0; i < metals.length; i++){ %>
 				<li>
+					<img src="<%= metals[i].image %>">
 				<a href="/metals/<%=metals[i].id; %>">
-					<p><%= metals[i].image %></p>
 					<p><%= metals[i].name %></p>
+					</a>
 					<p><%= metals[i].form %></p>
-					<p><%= metals[i].weight %></p>
+					</p><%= metals[i].weight %><p>
 					
-				</a>				
+								
 				</li>
 			<% } %>
 		</ul>

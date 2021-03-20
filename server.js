@@ -49,8 +49,6 @@ app.use((req, res, next) => {
 //AKA Body Parser
 app.use(express.urlencoded({extended:true}));
 
-// CONTROLLERS
-
 
 
 app.listen(PORT, ()=>{
