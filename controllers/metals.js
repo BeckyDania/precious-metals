@@ -1,15 +1,37 @@
+
+
 const express = require('express');
 const router = express.Router();
+const axios = require('axios')
 
-//Require Yarn Models
+//Require Models
 const Metal = require('../models/metals.js');
+
+
+const url_api = `https://metals-api.com/api/latest?access_key=${process.env.API_KEY}&base=XAU&symbols=USD`;
 
 // CONTROLLERS
 
 //Product.collection.drop()
 
 // Index Route
-router.get('/', (req, res)=>{
+router.get('/', async (req, res)=>{
+	try
+	{
+	const urlAPI = await axios.get(url_api)
+	console.log(urlAPI.data.rates)
+
+	const currentRates = urlAPI.data.rates
+	/* res.render('index', {
+		currentRates
+	
+	}) */
+ 
+	}catch(err){
+		console.error(err)
+	}
+	
+
 	Metal.find({}, (err, allMetals) =>{
 		res.render('index.ejs', {
 			metals: allMetals
@@ -33,10 +55,23 @@ router.get('/:id', (req, res)=>{
     });
 });
 
-// POST Route for API
-router.post('/', (req, res) => {
-	const gold = req.body.gold
-	const url_api = `https://metals-api.com/api/latest?access_key=${API_KEY}&base=XAU&symbols=USD`
+
+  
+//res.render('header.ejs', {
+//			rates: allrates
+/* const renderRate = async (data) => {
+	document.querySelectorAll('rates').innerHTML(data)
+}    */
+
+router.put('/', async (req, res, next) =>{
+	try{
+		let response = await axios.get(url_api)
+		renderRate()
+		console.log(data.rates)
+		
+	}catch(err){
+		console.log(err)
+	}
 })
 
 
