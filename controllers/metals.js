@@ -16,27 +16,37 @@ const url_api = `https://metals-api.com/api/latest?access_key=${process.env.API_
 
 // Index Route
 router.get('/', async (req, res)=>{
-	try
+/* 	try
 	{
 	const urlAPI = await axios.get(url_api)
-	console.log(urlAPI.data.rates)
+	//console.log(urlAPI.data.rates)
 
 	const currentRates = urlAPI.data.rates
-	/* res.render('index', {
-		currentRates
+	console.log(currentRates)
+	//console.log(urlAPI.data, "rates")
+	//res.render('./partials/header.ejs', {
+//		 currentRates
+//	}) 
 	
-	}) */
- 
+ //import the header into index.ejs
+ // worse come to repeat the code
+
+
 	}catch(err){
 		console.error(err)
 	}
-	
+	 */
 
 	Metal.find({}, (err, allMetals) =>{
 		res.render('index.ejs', {
-			metals: allMetals
+			metals: allMetals,
+		//	test : "test"
+		//currentRates
 		})
 	})
+
+
+	
 });
 
 
@@ -49,20 +59,21 @@ router.get('/new', (req, res)=>{
 router.get('/:id', (req, res)=>{
     Metal.findById(req.params.id, (err, foundMetal)=>{
         res.render('show.ejs', {
-			metal: foundMetal
+			metal: foundMetal,
+		//	currentRates
 		});
 		
     });
 });
 
-
+//Shortcut - custom middleware
   
 //res.render('header.ejs', {
 //			rates: allrates
 /* const renderRate = async (data) => {
 	document.querySelectorAll('rates').innerHTML(data)
 }    */
-
+/* 
 router.put('/', async (req, res, next) =>{
 	try{
 		let response = await axios.get(url_api)
@@ -72,7 +83,7 @@ router.put('/', async (req, res, next) =>{
 	}catch(err){
 		console.log(err)
 	}
-})
+}) */
 
 
 // POST Route - "Create"

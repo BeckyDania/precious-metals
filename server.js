@@ -3,6 +3,9 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 const PORT = process.env.PORT
+const axios = require('axios')
+
+const url_api = `https://metals-api.com/api/latest?access_key=${process.env.API_KEY}&base=XAU&symbols=USD`;
 
 
 const metalsControllers = require('./controllers/metals.js')
@@ -58,7 +61,36 @@ app.use(express.urlencoded({extended:true}));
 app.listen(PORT, ()=>{
     console.log('Server listening');
 });
+//custom middleware - everyrequest passes through 
+//configure - pass single callback - req, res, next - code makes the api call - data - set res.locals - a obj holds all local variables pass into a template when render it 
 
+app.use(async (req, res, next)=>{
+	try
+	{
+	const urlAPI = await axios.get(url_api)
+	//console.log(urlAPI.data.rates)
+
+	const currentRates = urlAPI.data.rates
+	//console.log(currentRates.USD)
+    const goldRate = currentRates.USD
+    console.log(goldRate)
+    //console.log(Object.values(currentRates))
+    //const goldRate = Object.values(currentRates)
+    //console.log(Object.values(goldRate[0]))
+    console.log(typeof goldRate)
+	
+res.locals.goldRate = goldRate
+	
+ //import the header into index.ejs
+ // worse come to repeat the code
+
+
+	}catch(err){
+		console.error(err)
+	}
+next()
+
+})
 
 app.use('/metals', metalsControllers);
 
