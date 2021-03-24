@@ -4,44 +4,26 @@ const express = require('express');
 const router = express.Router();
 const axios = require('axios')
 
+//req.app.locals.price
+
 //Require Models
 const Metal = require('../models/metals.js');
 
-
-const url_api = `https://metals-api.com/api/latest?access_key=${process.env.API_KEY}&base=XAU&symbols=USD`;
-
 // CONTROLLERS
 
-//Product.collection.drop()
+//Metal.collection.drop()
 
 // Index Route
-router.get('/', async (req, res)=>{
-/* 	try
-	{
-	const urlAPI = await axios.get(url_api)
-	//console.log(urlAPI.data.rates)
+router.get('/', (req, res)=>{
 
-	const currentRates = urlAPI.data.rates
-	console.log(currentRates)
-	//console.log(urlAPI.data, "rates")
-	//res.render('./partials/header.ejs', {
-//		 currentRates
-//	}) 
-	
- //import the header into index.ejs
- // worse come to repeat the code
-
-
-	}catch(err){
-		console.error(err)
-	}
-	 */
+//	req.app.locals.price
+//	const test = Number(req.app.locals.price.toFixed(2))
+//	console.log(test)
+//	console.log(typeof test)
 
 	Metal.find({}, (err, allMetals) =>{
 		res.render('index.ejs', {
-			metals: allMetals,
-		//	test : "test"
-		//currentRates
+			metals: allMetals
 		})
 	})
 
@@ -58,37 +40,34 @@ router.get('/new', (req, res)=>{
 // SHOW Route
 router.get('/:id', (req, res)=>{
     Metal.findById(req.params.id, (err, foundMetal)=>{
+		console.log(foundMetal)
+
         res.render('show.ejs', {
-			metal: foundMetal,
-		//	currentRates
+
+			metal: foundMetal
 		});
 		
     });
 });
 
-//Shortcut - custom middleware
-  
-//res.render('header.ejs', {
-//			rates: allrates
-/* const renderRate = async (data) => {
-	document.querySelectorAll('rates').innerHTML(data)
-}    */
-/* 
-router.put('/', async (req, res, next) =>{
-	try{
-		let response = await axios.get(url_api)
-		renderRate()
-		console.log(data.rates)
-		
-	}catch(err){
-		console.log(err)
-	}
-}) */
 
-
+//{$set: {price: req.app.locals.price} },
 // POST Route - "Create"
 router.post('/', (req, res)=>{
-	Metal.create(req.body, (err, createdMetal) =>{
+	req.app.locals.price
+	//{$set: {price: req.app.locals.price} },
+	//{$set: {price: test} },
+   
+	const test = Number(req.app.locals.price.toFixed(2))
+	console.log(test)
+	console.log(typeof test)
+	req.body.price = test
+
+
+	Metal.create(req.body, (err, createdMetal) => { 
+		
+
+
 		if(err){
 			console.log(err);
 			res.send(err)
@@ -123,7 +102,15 @@ router.get('/:id/edit', (req, res) => {
   // sometimes the HTTP method PATCH is used here instead
   router.put('/:id', (req, res) => {
 	// first we need to update 'readyToEat'
-	
+	req.app.locals.price
+	//{$set: {price: req.app.locals.price} },
+	//{$set: {price: test} },
+   
+	const test = Number(req.app.locals.price.toFixed(2))
+	console.log(test)
+	console.log(typeof test)
+	req.body.price = test
+
 	Metal.findByIdAndUpdate(req.params.id, req.body, { new: true }, (err, updatedMetal) => {
 	  res.redirect(`/metals/${req.params.id}`)
 	})

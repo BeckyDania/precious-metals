@@ -73,14 +73,14 @@ app.use(async (req, res, next)=>{
 	const currentRates = urlAPI.data.rates
 	//console.log(currentRates.USD)
     const goldRate = currentRates.USD
-    console.log(goldRate)
+    //console.log(goldRate)
     //console.log(Object.values(currentRates))
     //const goldRate = Object.values(currentRates)
     //console.log(Object.values(goldRate[0]))
-    console.log(typeof goldRate)
+  //  console.log(typeof goldRate)
 	
 res.locals.goldRate = goldRate
-	
+app.locals.price = goldRate	
  //import the header into index.ejs
  // worse come to repeat the code
 
