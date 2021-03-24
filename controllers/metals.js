@@ -61,12 +61,10 @@ router.post('/', (req, res)=>{
 	const test = Number(req.app.locals.price.toFixed(2))
 	console.log(test)
 	console.log(typeof test)
-	req.body.price = test
-
+	let x = (test + 150)
+	req.body.price = x
 
 	Metal.create(req.body, (err, createdMetal) => { 
-		
-
 
 		if(err){
 			console.log(err);
@@ -109,7 +107,10 @@ router.get('/:id/edit', (req, res) => {
 	const test = Number(req.app.locals.price.toFixed(2))
 	console.log(test)
 	console.log(typeof test)
-	req.body.price = test
+	//req.body.price = test
+	let x = (test + 150)
+	req.body.price = x
+
 
 	Metal.findByIdAndUpdate(req.params.id, req.body, { new: true }, (err, updatedMetal) => {
 	  res.redirect(`/metals/${req.params.id}`)
