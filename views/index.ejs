@@ -16,23 +16,30 @@
 </nav>
 
 
-		<ul>
-			<% for(let i = 0; i < metals.length; i++){ %>
-				<li>
-					<img src=<%= metals[i].image %>>
-				<a href="/metals/<%=metals[i].id; %>">
-					<p><%= metals[i].name %></p>
-					</a>
-					<p><%= metals[i].form %></p>
-					<p><%= metals[i].weight %><p>
-					<p><%= metals[i].price %></p>
+<div class="container-fluid">
+    
+    <div class="d-inline-flex justify-content-start flex-wrap .flex-row">
+         <% for(let i = 0; i < metals.length; i++){ %>
+      <div class="col" >
+         
+        <div class="card" style="width: 150px;" >
+            <img class="card-img-top" src="<%= metals[i].image %>" alt="Card image cap">
+            <div class="card-body">
+                <a href="/metals/<%=metals[i].id; %>">
+                    <p><%= metals[i].name %></p>
+                    </a>
+                    <p><%= metals[i].form %></p>
+                    <p><%= metals[i].weight %><p>
+                    <p><%= metals[i].price %></p>
+            </div>
+          </div>
+    
+      </div>
+              <% } %>
+    </div>
 
-					
-								
-				</li>
-			<% } %>
-		</ul>
-
-
+  </div>
+	
+  <%- include ('./partials/footer.ejs') %>
     </body>
 </html> 

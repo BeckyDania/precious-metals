@@ -6,9 +6,18 @@ header {
 	background-color: midnightblue;
 }
 
+.card {
+	margin: auto;
+}
+
 img {
     width:  100px;
-    height: 90px;
+    height: 130px;
+}
+
+p {
+	margin: 0;
+	text-align: center;
 }
 
 h1{

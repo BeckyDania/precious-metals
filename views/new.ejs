@@ -6,17 +6,65 @@
 
     </head>
     <body>
+
+        <%- include ('./partials/header.ejs') %>
+
         <h1>New Gold Inventory</h1>
+
+        <div class="container">
+
+
+
         <form action="/metals" method="POST">
-			Metal: <input type="text" name="name" /> <br/>
-			Form: <input type="text" name="form" /> <br />
-			Weight: <input type="number" name="weight" /> <br />
-			Description: <input type="text" name="description" /> <br />
-            Image: <input type="text" name="image" /><br>
-            Quantity: <input type="number" name="quantity"/> <br>
-            
+
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-2">
+
+
+			Metal: <input type="text" name="name" /> 
+			Form: <input type="text" name="form" /> 
+			Weight: <input type="number" name="weight" />
+
+        </div>
+    </div>
+</div>
+
+<div class="form-group">
+    <div class="form-row">
+        <div class="col-2">
+			Description: <input class ="w-100" type="text" name="description" />
+        </div>
+    </div>
+</div>
+
+<div class="form-group">
+    <div class="form-row">
+        <div class="col-2">
+            Image: <input type="text" name="image" />
+        </div>
+    </div>
+</div>
+
+<div class="form-group">
+    <div class="form-row">
+        <div class="col-2">
+            Quantity: <input type="number" name="quantity"/>
+        </div>
+    </div>
+</div>
 			<input type="submit" value="Create Inventory" />
-		</form>
+		</div>
+        
+        </form>
 	
+        <nav>
+            <a href="/metals">Back to Index</a>
+        </nav>
+			
+</div>
+		<%- include ('./partials/footer.ejs') %>
+
+
     </body>
 </html>

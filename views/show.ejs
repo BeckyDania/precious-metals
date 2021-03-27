@@ -11,22 +11,42 @@
         
         <h1>Metal show page</h1>
 
-        <img src="<%= metal.image %>">
-		<p><%= metal.name %></p>
-		<p><%= metal.form %></p>
-		<p>Quantity: <%= metal.quantity %></p>
-        <p>Weight: <%= metal.weight %></p>
-        <p>Price: $<%=metal.price %> </p>
-		<p><%=metal.description %></p>
+        <div class="container-fluid">
+    
+            <div class="row align-content-center justify-content-center">
+                
+              <div class="col" >
+                 
+                <div class="card" style="width: 150px;" >
+                    <img class="card-img-top" src="<%= metal.image %>" alt="Card image cap">
+                    <div class="card-body">
+                        <p><%= metal.name %></p>
+                        <p><%= metal.form %></p>
+                        <p>Quantity: <%= metal.quantity %></p>
+                        <p>Weight: <%= metal.weight %></p>
+                        <p>Price: $<%=metal.price %> </p>
+                        <p><%=metal.description %></p>
+                
+                    <div class="text-center">
+                        <a href="/metals/<%=metal.id; %>/edit">Edit</a>
+                
+                        <form action="/metals/<%= metal.id %>?_method=DELETE" method="POST">
+                            <button>Delete</button>
+                        </form>
+                        <nav>
+                            <a href="/metals">Back to Index</a>
+                        </nav>
+                        </div>
+                    </div>
+                  </div>
+            
+              </div>
 
+            </div>
+        
+          </div>
 
-		<a href="/metals/<%=metal.id; %>/edit">Edit</a>
+        <%- include ('./partials/footer.ejs') %>
 
-		<form action="/metals/<%= metal.id %>?_method=DELETE" method="POST">
-			<button>Delete</button>
-		</form>
-		<nav>
-            <a href="/metals">Back to Index</a>
-        </nav>
     </body>
 </html>
