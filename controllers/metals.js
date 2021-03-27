@@ -11,8 +11,6 @@ const Metal = require('../models/metals.js');
 
 // CONTROLLERS
 
-//Metal.collection.drop()
-
 // Index Route
 router.get('/', (req, res)=>{
 
@@ -37,13 +35,66 @@ router.get('/new', (req, res)=>{
     res.render('new.ejs');
 });
 
+
+router.get('/seed', (req, res)=>{
+    Metal.create([
+        {
+            name:'Pure Gold',
+            form: "bar",
+			weight: 1,
+            quantity: 4,
+			description: "Magnificent",
+            image: "https://catalog.usmint.gov/on/demandware.static/-/Sites-usm-master-catalog-us/default/dwfb9d8f79/images/hi-res/coins/Gold-Coins/17xa-COTY.jpg"
+        },
+        {
+            name:'Solid Gold',
+			form: "coin",
+			weight: 1,
+            description:"Rare Find",
+            quantity: 5,
+            image: "https://catalog.usmint.gov/on/demandware.static/-/Sites-usm-master-catalog-us/default/dwfb9d8f79/images/hi-res/coins/Gold-Coins/17xa-COTY.jpg"
+        },
+        {
+            name:'Minted Beauty',
+            description:"Collectible",
+			weight: 1,
+            quantity: 25,
+			description: "Collectible Item",
+            image: "https://catalog.usmint.gov/on/demandware.static/-/Sites-usm-master-catalog-us/default/dwfb9d8f79/images/hi-res/coins/Gold-Coins/17xa-COTY.jpg"
+        },
+		{
+            name:'Gold brick',
+			form: "bar",
+			weight: 1,
+            description:"Get it while it lasts",
+            quantity: 5,
+            image: "https://catalog.usmint.gov/on/demandware.static/-/Sites-usm-master-catalog-us/default/dwfb9d8f79/images/hi-res/coins/Gold-Coins/17xa-COTY.jpg"
+        },
+
+
+
+
+    ], (err, data)=>{
+        res.redirect('/metals')
+    })
+})
+
+
+
+//Metal.collection.drop()
+
+
+
+
+
+
+
 // SHOW Route
 router.get('/:id', (req, res)=>{
     Metal.findById(req.params.id, (err, foundMetal)=>{
 		console.log(foundMetal)
 
         res.render('show.ejs', {
-
 			metal: foundMetal
 		});
 		
@@ -51,13 +102,11 @@ router.get('/:id', (req, res)=>{
 });
 
 
-//{$set: {price: req.app.locals.price} },
+
 // POST Route - "Create"
 router.post('/', (req, res)=>{
 	req.app.locals.price
-	//{$set: {price: req.app.locals.price} },
-	//{$set: {price: test} },
-   
+	
 	const test = Number(req.app.locals.price.toFixed(2))
 	console.log(test)
 	console.log(typeof test)
@@ -71,7 +120,7 @@ router.post('/', (req, res)=>{
 			res.send(err)
 
 		} else {
-			//res.send(createdMetal);
+	
 			console.log(createdMetal)
 			res.redirect('/metals')
 		}
@@ -97,12 +146,10 @@ router.get('/:id/edit', (req, res) => {
   
   // set up UPDATE route
   // PUT  -- updates the information on the server
-  // sometimes the HTTP method PATCH is used here instead
+
   router.put('/:id', (req, res) => {
-	// first we need to update 'readyToEat'
+
 	req.app.locals.price
-	//{$set: {price: req.app.locals.price} },
-	//{$set: {price: test} },
    
 	const test = Number(req.app.locals.price.toFixed(2))
 	console.log(test)
@@ -116,12 +163,6 @@ router.get('/:id/edit', (req, res) => {
 	  res.redirect(`/metals/${req.params.id}`)
 	})
   })
-
-
-
-
-
-
 
 
 
